@@ -26,16 +26,6 @@ class logwatch (
   $ignore_conf    = $logwatch::params::ignore_conf,
 ) inherits logwatch::params {
 
-  validate_string($output)
-  validate_string($format)
-  validate_array($mail_to)
-  validate_string($mail_from)
-  validate_re($range, ['^All$', '^Today$', '^Yesterday$'])
-  validate_re($detail, ['^Low$', '^Med$', '^High$'])
-  validate_array($service)
-  validate_string($package_ensure)
-  validate_string($package_name)
-
   anchor { 'logwatch::begin': }
   -> class { '::logwatch::install': }
   -> class { '::logwatch::config': }
